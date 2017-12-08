@@ -20,9 +20,7 @@ at every hidden layer, a vector will be generated. Now suppose we input the text
 that it generates at every layer and the vectors from earlier, and create a style loss function from there. Thus, we get a cost function that
 is a linear combination of content loss and style loss and then create a network that minimizes this function.
 
-The project did not work too well, and there were a few possible improvements that the paper mentioned. That said, we cannot come to any
-scientific conclusion without trying the same thing at least a few times, right? Thus, we tried using this paper as our basis to attempt
-to solve the problem of Author Style Transfer.
+The project did not work too well and there were a few possible improvements that the paper mentioned. However, we will be discussing a paper from NIPS 2017 that gets a lot better results and became the basis for our experiments. Thus, we used this paper to get a good understanding of the problem of Author Style Transfer and what a model to solve this problem would look like.
 
 ## The Data
 
@@ -31,11 +29,11 @@ competition. The best part is that this data is clean and pre-processed very wel
 However, data science is all about the data, so some code was written to try and process the data that came from Project Gutenberg, and that
 taught us a few things about dealing with data.
 
-Pre-processing takes a lot of effort, and it can many times come from the fact that data is inconsistent with each other. A text file for one
-book can be radically different from the text file of another book. Also, people generally don't think about how a piece of software will read
-data, so you can find random content in between paragraphs and even sentences in paragraphs can be hard to split, even if you use a library
-like NLTK. Note for the future: Expect to spend considerable time just getting data ready.
+Pre-processing takes a lot of effort, and it can many times come from the fact that data is inconsistent with each other. A text file for one book can space out paragraphs and even sentences in a completely different way than another and this made writing the pre-processing code quite a task in and of itself. Also, people generally don't think about how a piece of software will read data, so you can find random content in between paragraphs and even sentences in paragraphs can be hard to split (we thought NLTK would work magic and more importantly, save time, but even that library had a tough time getting it right). Note for the future: Expect to spend considerable time just getting data ready.
 
-Nonetheless, we also had the Kaggle Dataset, so we had 5 authors worth of data to work with. For the data from Project Gutenberg, we picked one
-book each from Charles Dickens and Leo Tolstoy to process. With this massive dataset, we proceeded to train the model, which will be described
-next.
+Nonetheless, we also had the Kaggle Dataset, so we had 5 authors worth of data to work with. The Dickens and Tolstoy books were processed fairly well, while the team still has issues with Twain's works, probably because there are still encoding issues that we need to wrestle with more. For the data from Project Gutenberg, we picked one book each from Charles Dickens and Leo Tolstoy to process. With this massive dataset, we proceeded to train the model that will be described in the next section.
+
+## The Model
+
+Alright, here we are. It is nice to talk about the algorithms that others have tried and what we did to prepare our data, but at the end of the day, we just want to see what our model can do. But to understand that, we need to know what the model is doing.
+
