@@ -11,7 +11,7 @@ Neural Networks.
 
 First, though, let's take a look at what has already been done. In "Applying Artistic Style Transfer to Natural Language," Edirisoorya and
 Tenney make the point that using style transfer in the realm of NLP is a relatively new technique. Here, literary text was replaced with
-embedding ID's and fed into a GRU for identifying the author. The network for the style transfer had an encoder and decoder that would enable
+embedding ID's and fed into a GRU based RNN for identifying the author. The network for the style transfer had an encoder and decoder that would enable
 them to define a loss in content and style. Before we go on, we need to define their content loss and style loss.
 
 Their Seq2Seq model pooled (averaged) consecutive word vector inputs along with word vector outputs, found the difference between these
