@@ -3,7 +3,7 @@ import sys
 import time
 import ipdb
 import random
-import pickle as pickle
+import cPickle as pickle
 import numpy as np
 import tensorflow as tf
 
@@ -116,7 +116,6 @@ class Model(object):
         # a batch's first half consists of sentences of one style,
         # and second half of the other
         half = self.batch_size / 2
-        tf.cast(half, tf.int32)
         zeros, ones = self.labels[:half], self.labels[half:]
         soft_h_tsf = soft_h_tsf[:, :1+self.batch_len, :]
 
@@ -177,10 +176,10 @@ def transfer(model, decoder, sess, args, vocab, data0, data1, out_path):
 def create_model(sess, args, vocab):
     model = Model(args, vocab)
     if args.load_model:
-        print('Loading model from', args.model)
+        print 'Loading model from', args.model
         model.saver.restore(sess, args.model)
     else:
-        print('Creating model with fresh parameters.')
+        print 'Creating model with fresh parameters.'
         sess.run(tf.global_variables_initializer())
     return model
 
@@ -191,14 +190,15 @@ if __name__ == '__main__':
     if args.train:
         train0 = load_sent(args.train + '.0', args.max_train_size)
         train1 = load_sent(args.train + '.1', args.max_train_size)
-        print('#sents of training file 0:', len(train0))
-        print('#sents of training file 1:', len(train1))
+        print '#sents of training file 0:', len(train0)
+        print '#sents of training file 1:', len(train1)
 
         if not os.path.isfile(args.vocab):
+            print "Building vocab..."
             build_vocab(train0 + train1, args.vocab)
 
     vocab = Vocabulary(args.vocab, args.embedding, args.dim_emb)
-    print('vocabulary size:', vocab.size)
+    print 'vocabulary size:', vocab.size
 
     if args.dev:
         dev0 = load_sent(args.dev + '.0')
@@ -233,8 +233,8 @@ if __name__ == '__main__':
             dropout = args.dropout_keep_prob
 
             for epoch in range(1, 1+args.max_epochs):
-                print('--------------------epoch %d--------------------' % epoch)
-                print('learning_rate:', learning_rate, '  gamma:', gamma)
+                print '--------------------epoch %d--------------------' % epoch
+                print 'learning_rate:', learning_rate, '  gamma:', gamma
 
                 for batch in batches:
                     feed_dict = feed_dictionary(model, batch, rho, gamma,
@@ -270,7 +270,7 @@ if __name__ == '__main__':
                     dev_losses.output('dev')
                     if dev_losses.loss < best_dev:
                         best_dev = dev_losses.loss
-                        print('saving model...')
+                        print 'saving model...'
                         model.saver.save(sess, args.model)
 
                 gamma = max(args.gamma_min, gamma * args.gamma_decay)
@@ -293,5 +293,5 @@ if __name__ == '__main__':
 
                 batch = get_batch([sent], [y], vocab.word2id)
                 ori, tsf = decoder.rewrite(batch)
-                print('original:', ' '.join(w for w in ori[0]))
-                print('transfer:', ' '.join(w for w in tsf[0]))
+                print 'original:', ' '.join(w for w in ori[0])
+                print 'transfer:', ' '.join(w for w in tsf[0])
