@@ -3,9 +3,7 @@
 There have been artists who try to copy others. In art class in elementary school, you might have tried to draw a picture in the style of
 Van Gogh or someone like that. The art of transforming an existing image into another author's style is an idea that has already been
 explored using neural networks. However, this problem is an interesting one when it comes to the realm of Natural Language Processing (NLP).
-How do we rate how close author's styles are? What about the target author's text do we want to capture so that we can transform input text to
-match the target's style? These questions are the sort of things that we explore in our project: Author Style Transfer Using Recurrent
-Neural Networks.
+How do we rate how close author's styles are? What about the target author's text do we want to capture so that we can transform input text to match the target's style? These questions are the sort of things that we explore in our project: Author Style Transfer Using Recurrent Neural Networks.
 
 ## Prior Work
 
@@ -15,10 +13,7 @@ embedding ID's and fed into a GRU based RNN for identifying the author. The netw
 them to define a loss in content and style. Before we go on, we need to define their content loss and style loss.
 
 Their Seq2Seq model pooled (averaged) consecutive word vector inputs along with word vector outputs, found the difference between these
-vectors, and labeled the result as content loss. For style loss, it was a little more complex. Suppose an image was fed into the network. Then,
-at every hidden layer, a vector will be generated. Now suppose we input the text whose style we want to transform. We can compare the vectors
-that it generates at every layer and the vectors from earlier, and create a style loss function from there. Thus, we get a cost function that
-is a linear combination of content loss and style loss and then create a network that minimizes this function.
+vectors, and labeled the result as content loss. For style loss, it was a little more complex. Suppose an image was fed into the network. Then, at every hidden layer, a vector will be generated. Now suppose we input the text whose style we want to transform. We can compare the vectors that it generates at every layer and the vectors from earlier, and create a style loss function from there. Thus, we get a cost function that is a linear combination of content loss and style loss and then create a network that minimizes this function.
 
 The project did not work too well and there were a few possible improvements that the paper mentioned. However, we will be discussing a paper from NIPS 2017 that gets a lot better results and became the basis for our experiments. Thus, we used this paper to get a good understanding of the problem of Author Style Transfer and what a model to solve this problem would look like.
 
@@ -31,7 +26,7 @@ taught us a few things about dealing with data.
 
 Pre-processing takes a lot of effort, and it can many times come from the fact that data is inconsistent with each other. A text file for one book can space out paragraphs and even sentences in a completely different way than another and this made writing the pre-processing code quite a task in and of itself. Also, people generally don't think about how a piece of software will read data, so you can find random content in between paragraphs and even sentences in paragraphs can be hard to split (we thought NLTK would work magic and more importantly, save time, but even that library had a tough time getting it right). Note for the future: Expect to spend considerable time just getting data ready.
 
-Nonetheless, we also had the Kaggle dataset, so we had 5 authors worth of data to work with. The Dickens and Tolstoy books were processed fairly well, while the team still has issues with Twain's works, probably because there are still encoding issues that we need to wrestle with more. For the data from Project Gutenberg, we picked one book each from Charles Dickens and Leo Tolstoy to process. Oh, and we should mention that our great professors were kind enough to allow us to transcribe their lectures and this to the dataset. With this massive dataset, we proceeded to train the model that will be described in the next section.
+Nonetheless, we also had the Kaggle dataset, so we had 5 authors worth of data to work with. The Dickens and Tolstoy books were processed fairly well, while the team still has issues with Twain's works, probably because there are still encoding issues that we need to wrestle with more. For the data from Project Gutenberg, we picked one book each from Charles Dickens and Leo Tolstoy to process. Oh, and we should mention that our great professors were kind enough to allow us to transcribe their lectures and add those to the dataset. With this massive dataset, we proceeded to train the model that will be described in the next section.
 
 ## The Model
 
