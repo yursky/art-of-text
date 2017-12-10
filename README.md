@@ -4,7 +4,19 @@ Neural style transfer for written text.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To train a model, first create a `tmp/` folder, then go to the `code/` folder and run the following command:
+```bash
+python style_transfer.py --train ../data/yelp/sentiment.train --dev ../data/yelp/sentiment.dev --output ../tmp/sentiment.dev --vocab ../tmp/yelp.vocab --model ../tmp/model
+```
+
+To test the model, run the following command:
+```bash
+python style_transfer.py --test ../data/yelp/sentiment.test --output ../tmp/sentiment.test --vocab ../tmp/yelp.vocab --model ../tmp/model --load_model true
+```
+
+The model and results will be saved in the `tmp/` folder.
+
+Check `code/options.py` for all running options.
 
 ### Prerequisites
 
