@@ -51,7 +51,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Authors
 
-* **Yuriy minin** - [University of Texas at Austin](https://www.utexas.edu/)
+* **Yuriy Minin** - [University of Texas at Austin](https://www.utexas.edu/)
 * **Mukundan Kuthalam** - [University of Texas at Austin](https://www.utexas.edu/)
 * **Zohaib Imam** - [University of Texas at Austin](https://www.utexas.edu/)
 * **Ram Muthukumar** - [University of Texas at Austin](https://www.utexas.edu/)
