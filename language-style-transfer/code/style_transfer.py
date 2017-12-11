@@ -6,6 +6,7 @@ import random
 import cPickle as pickle
 import numpy as np
 import tensorflow as tf
+import random
 
 from vocab import Vocabulary, build_vocab
 from losses import Losses
@@ -266,6 +267,7 @@ if __name__ == '__main__':
                         losses.output('step %d, time %.0fs,'
                             % (step, time.time() - start_time))
                         losses.clear()
+			model.saver.save(sess, args.model)
 
                 if args.dev:
                     dev_losses = transfer(model, decoder, sess, args, vocab,
@@ -296,5 +298,6 @@ if __name__ == '__main__':
 
                 batch = get_batch([sent], [y], vocab.word2id)
                 ori, tsf = decoder.rewrite(batch)
-                print 'original:', ' '.join(w for w in ori[0])
-                print 'transfer:', ' '.join(w for w in tsf[0])
+		index = randrange(0,len(ori))
+                print 'original:', ' '.join(w for w in ori[index])
+                print 'transfer:', ' '.join(w for w in tsf[index])
