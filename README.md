@@ -4,7 +4,7 @@ Neural style transfer for written text.
 
 ## Getting Started
 
-To train a model, first create a `tmp/` folder, then go to the `code/` folder and run the following command:
+To train a model, first create a `tmp/` folder in `language-style-transfer`, then go to the `code/` folder and run the following command:
 ```bash
 python style_transfer.py --train ../data/yelp/sentiment.train --dev ../data/yelp/sentiment.dev --output ../tmp/sentiment.dev --vocab ../tmp/yelp.vocab --model ../tmp/model
 ```
@@ -17,6 +17,12 @@ python style_transfer.py --test ../data/yelp/sentiment.test --output ../tmp/sent
 The model and results will be saved in the `tmp/` folder.
 
 Check `code/options.py` for all running options.
+
+To train a HPL -> Shakespeare converter create a `style-tmp` here in root:
+
+```bash
+python style_transfer.py --train ../../data/preProcessCode/horror_shake.train --dev ../../data/preProcessCode/horror_shake.dev --output ../../style-tmp/style.dev --vocab ../../style-tmp/style.vocab --model ../../style-tmp/model
+```
 
 ### Prerequisites
 

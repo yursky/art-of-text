@@ -1,0 +1,5 @@
+tensorflow==1.4.0
+ipdb==0.10.3
+nltk==3.2.5
+numpy==1.13.3
+Pillow==4.3.0
