@@ -260,6 +260,7 @@ if __name__ == '__main__':
                     losses.add(loss, loss_g, loss_d, loss_d0, loss_d1)
 
                     if step % args.steps_per_checkpoint == 0:
+                        tf.summary.histogram('losses', losses)
                         losses.output('step %d, time %.0fs,'
                             % (step, time.time() - start_time))
                         losses.clear()

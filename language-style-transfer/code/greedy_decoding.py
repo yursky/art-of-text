@@ -19,6 +19,7 @@ class Decoder(object):
         ori = np.argmax(logits_ori, axis=2).tolist()
         ori = [[self.vocab.id2word[i] for i in sent] for sent in ori]
         ori = strip_eos(ori)
+        print type(ori)
 
         tsf = np.argmax(logits_tsf, axis=2).tolist()
         tsf = [[self.vocab.id2word[i] for i in sent] for sent in tsf]
