@@ -31,11 +31,11 @@ def load_arguments():
             default='')
     argparser.add_argument('--load_model',
             type=bool,
-            default=False)
+            default=True)
 
     argparser.add_argument('--batch_size',
             type=int,
-            default=16)
+            default=64)
     argparser.add_argument('--max_epochs',
             type=int,
             default=20)
