@@ -111,19 +111,19 @@ for val in textFromMWS:
         continue
 
 horrorDevFile = open("horror.dev.0", "w")
-for val in textFromHPL[:3381]:
+for val in textFromHPL[:725]:
     try:
         horrorDevFile.write(val)
         horrorDevFile.write("\n")
     except:
         continue
-for val in textFromEAP[:3000]:
+for val in textFromEAP[:725]:
     try:
         horrorDevFile.write(val)
         horrorDevFile.write("\n")
     except:
         continue
-for val in textFromMWS[:3626]:
+for val in textFromMWS[:725]:
     try:
         horrorDevFile.write(val)
         horrorDevFile.write("\n")
