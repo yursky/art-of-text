@@ -274,6 +274,7 @@ if __name__ == '__main__':
                         model.saver.save(sess, args.model)
 
                 gamma = max(args.gamma_min, gamma * args.gamma_decay)
+		learning_rate = .5*learning_rate
 
         if args.test:
             test_losses = transfer(model, decoder, sess, args, vocab,
