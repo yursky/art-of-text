@@ -71,14 +71,14 @@ for i in range(len(listOfAuthors)):
 print(len(textFromHPL))
 print(len(textFromEAP))
 print(len(textFromMWS))
-hplDevFile = open("hpl.dev.0", "w")
+hplDevFile = open("hplMws.dev.0", "w")
 for val in textFromHPL[:3381]:
     try:
         hplDevFile.write(val)
         hplDevFile.write("\n")
     except:
         continue
-hplDevFile = open("hpl.train.0", "w")
+hplDevFile = open("hplMws.train.0", "w")
 for val in textFromHPL[3381:]:
     try:
         hplDevFile.write(val)
@@ -94,7 +94,7 @@ for val in textFromEAP:
     except:
         continue
 
-mwsDevFile = open("mws.dev.1", "w")
+mwsDevFile = open("hplMws.dev.1", "w")
 for val in textFromMWS[:3626]:
     try:
         mwsDevFile.write(val)
@@ -102,7 +102,7 @@ for val in textFromMWS[:3626]:
     except:
         continue
 
-mwsDevFile = open("mws.train.1", "w")
+mwsDevFile = open("hplMws.train.1", "w")
 for val in textFromMWS[3626:]:
     try:
         mwsDevFile.write(val)
