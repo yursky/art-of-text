@@ -109,3 +109,43 @@ for val in textFromMWS:
         mwsDevFile.write("\n")
     except:
         continue
+
+horrorDevFile = open("horror.dev.0", "w")
+for val in textFromHPL[:725]:
+    try:
+        horrorDevFile.write(val)
+        horrorDevFile.write("\n")
+    except:
+        continue
+for val in textFromEAP[:725]:
+    try:
+        horrorDevFile.write(val)
+        horrorDevFile.write("\n")
+    except:
+        continue
+for val in textFromMWS[:725]:
+    try:
+        horrorDevFile.write(val)
+        horrorDevFile.write("\n")
+    except:
+        continue
+
+horrorTrainFile = open("horror.train.0", "w")
+for val in textFromHPL:
+    try:
+        horrorTrainFile.write(val)
+        horrorTrainFile.write("\n")
+    except:
+        continue
+for val in textFromEAP:
+    try:
+        horrorTrainFile.write(val)
+        horrorTrainFile.write("\n")
+    except:
+        continue
+for val in textFromMWS:
+    try:
+        horrorTrainFile.write(val)
+        horrorTrainFile.write("\n")
+    except:
+        continue
