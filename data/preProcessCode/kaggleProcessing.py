@@ -79,7 +79,7 @@ for val in textFromHPL[:3381]:
     except:
         continue
 hplDevFile = open("hplMws.train.0", "w")
-for val in textFromHPL[3381:]:
+for val in textFromHPL:
     try:
         hplDevFile.write(val)
         hplDevFile.write("\n")
@@ -103,7 +103,7 @@ for val in textFromMWS[:3626]:
         continue
 
 mwsDevFile = open("hplMws.train.1", "w")
-for val in textFromMWS[3626:]:
+for val in textFromMWS:
     try:
         mwsDevFile.write(val)
         mwsDevFile.write("\n")
