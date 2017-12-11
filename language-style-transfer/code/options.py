@@ -41,7 +41,7 @@ def load_arguments():
             default=20)
     argparser.add_argument('--steps_per_checkpoint',
             type=int,
-            default=1000)
+            default=100)
     argparser.add_argument('--max_seq_length',
             type=int,
             default=20)
