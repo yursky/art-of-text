@@ -35,13 +35,13 @@ def load_arguments():
 
     argparser.add_argument('--batch_size',
             type=int,
-            default=64)
+            default=32)
     argparser.add_argument('--max_epochs',
             type=int,
             default=20)
     argparser.add_argument('--steps_per_checkpoint',
             type=int,
-            default=1000)
+            default=100)
     argparser.add_argument('--max_seq_length',
             type=int,
             default=20)
@@ -69,7 +69,7 @@ def load_arguments():
             default=100)
     argparser.add_argument('--learning_rate',
             type=float,
-            default=0.0001)
+            default=0.01)
     #argparser.add_argument('--learning_rate_decay',
     #        type=float,
     #        default=0.5)
