@@ -35,7 +35,7 @@ def load_arguments():
 
     argparser.add_argument('--batch_size',
             type=int,
-            default=64)
+            default=32)
     argparser.add_argument('--max_epochs',
             type=int,
             default=20)
