@@ -260,6 +260,7 @@ if __name__ == '__main__':
                     losses.add(loss, loss_g, loss_d, loss_d0, loss_d1)
 
                     if step % args.steps_per_checkpoint == 0:
+                        tf.summary.histogram('losses', losses)
                         losses.output('step %d, time %.0fs,'
                             % (step, time.time() - start_time))
                         losses.clear()
@@ -274,6 +275,7 @@ if __name__ == '__main__':
                         model.saver.save(sess, args.model)
 
                 gamma = max(args.gamma_min, gamma * args.gamma_decay)
+		learning_rate = .5*learning_rate
 
         if args.test:
             test_losses = transfer(model, decoder, sess, args, vocab,
