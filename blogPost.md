@@ -95,3 +95,5 @@ Training a neural network takes a very long time and our team found this out the
 
 ## Conclusion
 This problem is a difficult one to solve and the models that exist today are certainly nothing short of hungry and hard to train. However, the project was great for learning about neural networks and also how the results of Data Science experiments can be, perhaps, not as desirable as the scientists would have wished. This project was quite a learning experience and we look forward to working on more things like this.
+
+Remember, any and all hyperlinks are either the superscripted numbers or the GitHub repo link at the top. Thanks for reading!
