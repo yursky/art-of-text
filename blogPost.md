@@ -48,13 +48,17 @@ Phew, that's a lot of math! However, you now hopefully have a better idea of wha
 The model could successfully transfer sentiment, however due to the limited time, computational resources, and data, we were not able to train a model capable of transferring author style with great accuracy in content. When trained to transfer sentiment, the model was able to transform negative Yelp reviews into the equivalent with a positive sentiment.
 
 # Sentiment Transfer Results:  
+```
 Original: horrible service was .   
 Transfer: great service !  
+```
 
 In the first example, the core subject in the original sentance (the service) is preserved in the transformed sentance. "Horrible" was transformed into "great," which shows the model is able to reverse the sentiment. An interesting thing to note in this example is the period became an exclaimation point, showing the model understands a concept of enthusiasm. 
 
+```
 Original: i would never recommend this place to anyone and it 's me .  
 Transfer: i will definitely recommend this place to go and everyone !  
+```
 
 The second example also shows the model preserves content and reverses sentiment; however, the model also translates "it's me" to "everyone," which is incorrect.
 
