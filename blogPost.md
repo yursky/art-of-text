@@ -1,5 +1,7 @@
 # Author Style Transfer Using Recurrent Neural Nets (Blog Post)
 
+First, let me note the names of the entire team that contributed to the project: Mukundan Kuthalam, Yuriy Minin, Zohaib Imam, and Ram Muthukumar.
+
 For every paper that we mention in this post, we have a link to the paper denoted with a superscript number, so click on those if you would like to read the papers. Now if you would like a link to the GitHub with our model and datasets, look [here](https://github.com/yursky/art-of-text)
 
 ## Intro
