@@ -24,7 +24,7 @@ competition. The best part is that this data is clean and pre-processed very wel
 However, data science is all about the data, so some code was written to try and process the data that came from Project Gutenberg, and that
 taught us a few things about dealing with data.
 
-Pre-processing takes a lot of effort, and it can many times come from the fact that data is inconsistent with each other. A text file for one book can space out paragraphs and even sentences in a completely different way than another and this made writing the pre-processing code quite a task in and of itself. Also, people generally don't think about how a piece of software will read data, so you can find random content in between paragraphs and even sentences in paragraphs can be hard to split (we thought NLTK would work magic and more importantly, save time, but even that library had a tough time getting it right). Note for the future: Expect to spend considerable time just getting data ready.
+Pre-processing takes a lot of effort, and it can many times come from the fact that data is inconsistent with each other. A text file for one book can space out paragraphs and even sentences in a completely different way than another and this made writing the pre-processing code quite a task in and of itself. Also, people generally don't think about how a piece of software will read data, so you can find random content in between paragraphs and even sentences in paragraphs can be hard to split (we thought [NLTK](http://www.nltk.org/) would work magic and more importantly, save time, but even that library had a tough time getting it right). Note for the future: Expect to spend considerable time just getting data ready.
 
 Nonetheless, we also had the Kaggle dataset, so we had 5 authors worth of data to work with. The Dickens and Tolstoy books were processed fairly well, while the team still has issues with Twain's works, probably because there are still encoding issues that we need to wrestle with more. For the data from Project Gutenberg, we picked one book each from Charles Dickens and Leo Tolstoy to process. Oh, and we should mention that our great professors were kind enough to allow us to transcribe their lectures and add those to the dataset. With this massive dataset, we proceeded to train the model that will be described in the next section.
 
@@ -38,7 +38,7 @@ To put this in more mathematical terms, every corpora of text is the input to an
 
 First, it is important to know that since we know the author styles (and also the corpora of text that we are analyzing), we know p(x1|y1) and p(x2|y2). However, we really need to find the style transfer functions between them \[p(x1|x2;y1,y2) and p(x2|x1;y1,y2)\]. This involves recovering the joint distribution p(x1,x2|y1,y2) which can be done by factoring in z. That is, if we know p(x1|y1,z) and p(x2|y2,z), then p(x1,x2|y1,y2) is the integration of p(x1|y1,z) * p(x2|y2,z) * p(z) over z assuming that each of the x's are generated from "distinct enough" styles (otherwise, there would naturally not be a well-defined style transfer function).
 
-The kicker of all this is that to transfer x1 into the style of x2, we need an encoder that learned the content of x2 \[p(z|x2,y2)\] and a decoder layer that adds style to this content representation \[p(x|y,z)\]. In case you have not noticed yet, since we already know the styles of both authors, the big challenge is preserving the content of the text that we are transforming. The more content we preserve, the closer it sounds like another author wrote the same corpora of text in their words. Then the loss function becomes what parameters "theta_E" and "theta_G" must be used for E and G so that the encoder E learns the content of the target content as well and possible and G generates x as well as possible from the given style y and content z. For those who like numbers and symbols: (Insert LossFunc.png below)
+The kicker of all this is that to transfer x1 into the style of x2, we need an encoder that learned the content of x2 \[p(z|x2,y2)\] and a decoder layer that adds style to this content representation \[p(x|y,z)\]. In case you have not noticed yet, since we already know the styles of both authors, the big challenge is preserving the content of the text that we are transforming. The more content we preserve, the closer it sounds like another author wrote the same corpora of text in their words. Then the loss function becomes what parameters "theta_E" and "theta_G" must be used for E and G so that the encoder E learns the content of the target content as well and possible and G generates x as well as possible from the given style y and content z. For those who like numbers and symbols: ![alt text](https://github.com/yursky/art-of-text/blob/master/language-style-transfer/img/LossFunc.png)
 
 This is basically where we get to the point of tuning the neural networks that were built to see if we can get the best thetas. There are two variants of this model. One called an auto-aligned encoder has a discriminator D that tries to "align" each content distribution with the right z ~ p(xi|yi) distribution (where i is some integer). By "align," I mean the content distributions that are generated are transformed to match the true content distribution of the other corpora. The second type of encoder (cross-aligned auto-encoder) looks at the corporas directly. It takes the transformed corporas and aligns those with the true values generated from the target style. This is the last layer of the network.
 
@@ -61,18 +61,24 @@ The second example also shows the model preserves content and reverses sentiment
 # Author Transfer Results:  
 (Horror Authors to Shakespeare)
 
+```
 Original: the <unk> of the <unk> of the <unk> and the <unk> of the <unk> and the <unk> of the <unk>  
-Transfer: And , , , , , , , , , ,  
+Transfer: And , , , , , , , , , , 
+```
 
 The data was preprocessed to omit proper nouns and numbers, hence the <unk>'s. In contrast to the model trained to transfer sentiment, the model trained on author style transfer was not very successful. In the first example above, the model understood Shakespeare loved to use commas, but the translated result preserves no content from the original. 
 
+```
 Original: i was the <unk> of the <unk>.   
 Transfer: And , the king of the world  
+```
 
 The second example shows a more interesting result. The model inferred what word Shakespeare would use in place of the unknowns, and chose grandiose language such as "king" and "world," fitting language Shakespeare would use.
 
+```
 Original: i had been <unk> and i had not be   
 Transfer: And , I 'll not be to be .  
+```
 
 In this third example, the transferred sentance preserves no content, however creates a phrase similar to "to be or not to be," a line accreditted to Shakespeare. 
 
