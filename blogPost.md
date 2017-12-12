@@ -12,9 +12,7 @@ How do we rate how close author's styles are? What about the target author's tex
 ## Prior Work
 
 First, though, let's take a look at what has already been done. In "Applying Artistic Style Transfer to Natural Language," Edirisoorya and
-Tenney[<sup>1</sup>](https://github.com/yursky/art-of-text/blob/master/papers/neural-style-natural-language.pdf) make the point that using style transfer in the realm of NLP is a relatively new technique. Here, literary text was replaced with
-embedding ID's and fed into a GRU based RNN for identifying the author. The network for the style transfer had an encoder and decoder that would enable
-them to define a loss in content and style. Before we go on, we need to define their content loss and style loss.
+Tenney[<sup>1</sup>](https://github.com/yursky/art-of-text/blob/master/papers/neural-style-natural-language.pdf) make the point that using style transfer in the realm of NLP is a relatively new technique. Here, literary text was replaced with embedding ID's and fed into a GRU based RNN for identifying the author. The network for the style transfer had an encoder and decoder that would enable them to define a loss in content and style. Before we go on, we need to define their content loss and style loss.
 
 Their Seq2Seq model pooled (averaged) consecutive word vector inputs along with word vector outputs, found the difference between these
 vectors, and labeled the result as content loss. For style loss, it was a little more complex. Suppose an image was fed into the network. Then, at every hidden layer, a vector will be generated. Now suppose we input the text whose style we want to transform. We can compare the vectors that it generates at every layer and the vectors from earlier, and create a style loss function from there. Thus, we get a cost function that is a linear combination of content loss and style loss and then create a network that minimizes this function.
@@ -23,14 +21,13 @@ The project did not work too well and there were a few possible improvements tha
 
 ## The Data
 
-So let's talk about where the data is coming from. Kaggle has a really nice dataset that it provided for the "Spooky Author Identification"[<sup>3</sup>](https://www.kaggle.com/c/spooky-author-identification/data)
-competition. The best part is that this data is clean and pre-processed very well, so we can focus on word embeddings using just this data.
-However, data science is all about the data, so some code was written to try and process the data that came from Project Gutenberg, and that
-taught us a few things about dealing with data.
+So let's talk about where the data is coming from. Kaggle has a really nice dataset that it provided for the "Spooky Author Identification"[<sup>3</sup>](https://www.kaggle.com/c/spooky-author-identification/data) competition. The best part is that this data is clean and pre-processed very well, so we can focus on word embeddings using just this data. However, data science is all about the data, so some code was written to try and process the data that came from Project Gutenberg, and that taught us a few things about dealing with data.
 
 Pre-processing takes a lot of effort, and it can many times come from the fact that data is inconsistent with each other. A text file for one book can space out paragraphs and even sentences in a completely different way than another and this made writing the pre-processing code quite a task in and of itself. Also, people generally don't think about how a piece of software will read data, so you can find random content in between paragraphs and even sentences in paragraphs can be hard to split (we thought [NLTK](http://www.nltk.org/) would work magic and more importantly, save time, but even that library had a tough time getting it right). Note for the future: Expect to spend considerable time just getting data ready.
 
-Nonetheless, we also had the Kaggle dataset, so we had 5 authors worth of data to work with. The Dickens and Tolstoy books were processed fairly well, while the team still has issues with Twain's works, probably because there are still encoding issues that we need to wrestle with more. For the data from Project Gutenberg, we picked one book each from Charles Dickens and Leo Tolstoy to process. Oh, and we should mention that our great professors were kind enough to allow us to transcribe their lectures and add those to the dataset. With this massive dataset, we proceeded to train the model that will be described in the next section.
+Nonetheless, we also had the Kaggle dataset, so we had 5 authors worth of data to work with. The Dickens and Tolstoy books were thought to be processed fairly well, but turned out to not be as clean as we would have liked, while the team still has issues with Twain's works, probably because there are still encoding issues that we need to wrestle with more. Unfortunately, we could not add the Project Gutenberg dataset to the overall dataset for these reasons. Oh, and we should mention that our great professors were kind enough to allow us to transcribe their lectures, but since we could not get enough data from those, we could not use those for the dataset either.
+
+So our complete dataset came from Kaggle, a corpus of Shakespeare text that we found, and a corpus of Yelp reviews that ended up giving us enough data for some interesting results. Okay, on to the model!
 
 ## The Model
 
