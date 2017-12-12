@@ -47,7 +47,7 @@ Phew, that's a lot of math! However, you now hopefully have a better idea of wha
 ## The Results  
 The model could successfully transfer sentiment, however due to the limited time, computational resources, and data, we were not able to train a model capable of transferring author style with great accuracy in content. When trained to transfer sentiment, the model was able to transform negative Yelp reviews into the equivalent with a positive sentiment.
 
-#Sentiment Transfer Results:  
+# Sentiment Transfer Results:  
 Original: horrible service was .   
 Transfer: great service !  
 
@@ -58,7 +58,7 @@ Transfer: i will definitely recommend this place to go and everyone !
 
 The second example also shows the model preserves content and reverses sentiment; however, the model also translates "it's me" to "everyone," which is incorrect.
 
-#Author Transfer Results:  
+# Author Transfer Results:  
 (Horror Authors to Shakespeare)
 
 Original: the <unk> of the <unk> of the <unk> and the <unk> of the <unk> and the <unk> of the <unk>  
