@@ -1,5 +1,7 @@
 # Blog Post
 
+For every paper that we mention in this post, we have a link to the paper denoted with a superscript number, so click on those if you would like to read the papers. Now if you would like a link to the GitHub with our model and datasets, look [here](https://github.com/yursky/art-of-text)
+
 There have been artists who try to copy others. In art class in elementary school, you might have tried to draw a picture in the style of
 Van Gogh or someone like that. The art of transforming an existing image into another author's style is an idea that has already been
 explored using neural networks. However, this problem is an interesting one when it comes to the realm of Natural Language Processing (NLP).
