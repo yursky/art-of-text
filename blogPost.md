@@ -1,6 +1,8 @@
-# Blog Post
+# Author Style Transfer Using Recurrent Neural Nets (Blog Post)
 
 For every paper that we mention in this post, we have a link to the paper denoted with a superscript number, so click on those if you would like to read the papers. Now if you would like a link to the GitHub with our model and datasets, look [here](https://github.com/yursky/art-of-text)
+
+## Intro
 
 There have been artists who try to copy others. In art class in elementary school, you might have tried to draw a picture in the style of
 Van Gogh or someone like that. The art of transforming an existing image into another author's style is an idea that has already been
@@ -46,8 +48,8 @@ This is basically where we get to the point of tuning the neural networks that w
 
 Phew, that's a lot of math! However, you now hopefully have a better idea of what sort of thing this model is trying to do. Now, without further ado, the next discussion talks about what was achieved by applying this model to the data.
 
-## The Results  
-The model could successfully transfer sentiment, however due to the limited time, computational resources, and data, we were not able to train a model capable of transferring author style with great accuracy in content. When trained to transfer sentiment, the model was able to transform negative Yelp reviews into the equivalent with a positive sentiment.
+## The Results
+Well, not all Data Science projects give you fantastic results and that was painfully obvious here. Limited by time, computational resources, and data, author style transfer proved quite complex. This could have been due to a number of reasons including lack of training time and a more diverse vocabulary. Interestingly enough, the sentiment transfer using Yelp reviews gave us some really good results, where we turned negative Yelp reviews into more positive ones. Enough from me, see for yourself:
 
 # Sentiment Transfer Results:  
 ```
@@ -55,14 +57,14 @@ Original: horrible service was .
 Transfer: great service !  
 ```
 
-In the first example, the core subject in the original sentance (the service) is preserved in the transformed sentance. "Horrible" was transformed into "great," which shows the model is able to reverse the sentiment. An interesting thing to note in this example is the period became an exclaimation point, showing the model understands a concept of enthusiasm. 
+In the first example, the core subject in the original sentance (the service) is preserved in the transformed sentence. "Horrible" was transformed into "great," which shows the model is able to reverse the sentiment. An interesting thing to note in this example is the period became an exclamation point, showing the model understands the concept of enthusiasm. 
 
 ```
 Original: i would never recommend this place to anyone and it 's me .  
 Transfer: i will definitely recommend this place to go and everyone !  
 ```
 
-The second example also shows the model preserves content and reverses sentiment; however, the model also translates "it's me" to "everyone," which is incorrect.
+Okay so maybe neither of these sentences are grammatically correct, but there are interesting results. Again, we see the model seemingly correlating exclamation marks with positive sentiment. That said, the structure of the sentence is preserved and the sentiment reversal was spot on. The next step was to try and apply the model to switching styles from horror authors (HP Lovecraft, Mary Shelley, and Edgar Allen Poe) to Shakespeare.
 
 # Author Transfer Results:  
 (Horror Authors to Shakespeare)
@@ -86,7 +88,10 @@ Original: i had been <unk> and i had not be
 Transfer: And , I 'll not be to be .  
 ```
 
-In this third example, the transferred sentance preserves no content, however creates a phrase similar to "to be or not to be," a line accreditted to Shakespeare. 
+In this third example, the transferred sentence preserves no content, but created a phrase similar to "to be or not to be," a line accreditted to Shakespeare. 
 
 ## Moving Forward  
-Our model would be greatly improved if we had access to more data and more computational power. We were not able to perform any hyperparameter tuning because it took about seven hours to completely train a model. We want to continue tuning the learning rate and the gamma. We also want to tweak the architecture of the model itself, looking into interesting configurations such as Siamese networks.
+Training a neural network takes a very long time and our team found this out the hard way. Literary authors also have quite a diverse vocabulary, which is harder for the model to learn. For these reasons, access to more time would likely improve our results. In addition to taking a while to train, the model was also a very "hungry" one. That is, it required a lot of data to train the model (the sentiment data set had 150,000 sentences!) so the more data we could feed it, the better. Due to the long runtime of the model, hyperparameter tuning (i.e. the learning rate, gamma, etc.) was somewhat ignored and that is something the team would love to look into in the future. Of course, making architectural changes is always on the table and the idea of the Siamese network is something we could try...
+
+## Conclusion
+This problem is a difficult one to solve and the models that exist today are certainly nothing short of hungry and hard to train. However, the project was great for learning about neural networks and also how the results of Data Science experiments can be, perhaps, not as desirable as the scientists would have wished. This project was quite a learning experience and we look forward to working on more things like this.
