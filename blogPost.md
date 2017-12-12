@@ -8,18 +8,18 @@ How do we rate how close author's styles are? What about the target author's tex
 ## Prior Work
 
 First, though, let's take a look at what has already been done. In "Applying Artistic Style Transfer to Natural Language," Edirisoorya and
-Tenney make the point that using style transfer in the realm of NLP is a relatively new technique. Here, literary text was replaced with
+Tenney[<sup>1</sup>](https://github.com/yursky/art-of-text/blob/master/papers/neural-style-natural-language.pdf) make the point that using style transfer in the realm of NLP is a relatively new technique. Here, literary text was replaced with
 embedding ID's and fed into a GRU based RNN for identifying the author. The network for the style transfer had an encoder and decoder that would enable
 them to define a loss in content and style. Before we go on, we need to define their content loss and style loss.
 
 Their Seq2Seq model pooled (averaged) consecutive word vector inputs along with word vector outputs, found the difference between these
 vectors, and labeled the result as content loss. For style loss, it was a little more complex. Suppose an image was fed into the network. Then, at every hidden layer, a vector will be generated. Now suppose we input the text whose style we want to transform. We can compare the vectors that it generates at every layer and the vectors from earlier, and create a style loss function from there. Thus, we get a cost function that is a linear combination of content loss and style loss and then create a network that minimizes this function.
 
-The project did not work too well and there were a few possible improvements that the paper mentioned. However, we will be discussing a paper from NIPS 2017 that gets a lot better results and became the basis for our experiments. Thus, we used this paper to get a good understanding of the problem of Author Style Transfer and what a model to solve this problem would look like.
+The project did not work too well and there were a few possible improvements that the paper mentioned. However, we will be discussing a paper[<sup>2</sup>](https://github.com/yursky/art-of-text/blob/master/papers/style-transfer-from-non-parallel-text-by-cross-alignment.pdf) from NIPS 2017 that gets a lot better results and became the basis for our experiments. Thus, we used this paper to get a good understanding of the problem of Author Style Transfer and what a model to solve this problem would look like.
 
 ## The Data
 
-So let's talk about where the data is coming from. Kaggle has a really nice dataset that it provided for the "Spooky Author Identification"
+So let's talk about where the data is coming from. Kaggle has a really nice dataset that it provided for the "Spooky Author Identification"[<sup>3</sup>](https://www.kaggle.com/c/spooky-author-identification/data)
 competition. The best part is that this data is clean and pre-processed very well, so we can focus on word embeddings using just this data.
 However, data science is all about the data, so some code was written to try and process the data that came from Project Gutenberg, and that
 taught us a few things about dealing with data.
