@@ -47,32 +47,32 @@ Phew, that's a lot of math! However, you now hopefully have a better idea of wha
 ## The Results
 The model could successfully transfer sentiment, however due to the limited time, computational resources, and data, we were not able to train a model capable of transferring author style with great accuracy in content. When trained to transfer sentiment, the model was able to transform negative Yelp reviews into the equivalent with a positive sentiment.
 
-__Sentiment Transfer Results__
-Original: horrible service was .
-Transfer: great service !
+__Sentiment Transfer Results__ \n
+Original: horrible service was . \n
+Transfer: great service ! \n
 
 
 In the first example, the core subject in the original sentance (the service) is preserved in the transformed sentance. "Horrible" was transformed into "great," which shows the model is able to reverse the sentiment. An interesting thing to note in this example is the period became an exclaimation point, showing the model understands a concept of enthusiasm. 
 
-Original: i would never recommend this place to anyone and it 's me .
+Original: i would never recommend this place to anyone and it 's me .\n
 Transfer: i will definitely recommend this place to go and everyone !
 
 The second example also shows the model preserves content and reverses sentiment; however, the model also translates "it's me" to "everyone," which is incorrect.
 
-__Author Transfer Results__
+__Author Transfer Results__\n
 (Horror Authors to Shakespeare)
 
-Original: the <unk> of the <unk> of the <unk> and the <unk> of the <unk> and the <unk> of the <unk>
+Original: the <unk> of the <unk> of the <unk> and the <unk> of the <unk> and the <unk> of the <unk>\n
 Transfer: And , , , , , , , , , ,
 
 The data was preprocessed to omit proper nouns and numbers, hence the <unk>'s. In contrast to the model trained to transfer sentiment, the model trained on author style transfer was not very successful. In the first example above, the model understood Shakespeare loved to use commas, but the translated result preserves no content from the original. 
 
-Original: i was the <unk> of the <unk>.
+Original: i was the <unk> of the <unk>.\n
 Transfer: And , the king of the world
 
 The second example shows a more interesting result. The model inferred what word Shakespeare would use in place of the unknowns, and chose grandiose language such as "king" and "world," fitting language Shakespeare would use.
 
-Original: i had been <unk> and i had not be 
+Original: i had been <unk> and i had not be \n
 Transfer: And , I 'll not be to be .
 
 In this third example, the transferred sentance preserves no content, however creates a phrase similar to "to be or not to be," a line accreditted to Shakespeare. 
